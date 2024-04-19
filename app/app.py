@@ -4,13 +4,16 @@ from faicons import icon_svg
 from shiny import reactive
 from shiny.express import input, render, ui
 import palmerpenguins 
+import shinyswatch
+
+shinyswatch.theme.minty()
 
 df = palmerpenguins.load_penguins()
 
 ui.page_opts(title="K.young Penguins dashboard", fillable=True)
 
 
-with ui.sidebar(title="Filter controls", bg="blue"):
+with ui.sidebar(title="Filter controls", text="blue" ):
     ui.input_slider("mass", "Mass", 2000, 6000, 6000)
     ui.input_checkbox_group(
         "species",
@@ -55,7 +58,7 @@ with ui.sidebar(title="Filter controls", bg="blue"):
 
 with ui.layout_column_wrap(fill=False):
     #Creating data value box for peguin count  
-    with ui.value_box(showcase=icon_svg("earlybirds"), theme="'text-blue', 'bg-gradient-blue-green'"):
+    with ui.value_box(showcase=icon_svg("earlybirds"), theme="'text-blue"):
         "Number of penguins"#title of value box 
 
         @render.text
